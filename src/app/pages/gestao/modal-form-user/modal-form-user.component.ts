@@ -26,7 +26,7 @@ export class ModalFormUserComponent {
 
   ngOnInit(){
     this.buildForm();
-    if(this.data == this.data.firebaseId) {
+    if(this.data && this.data.firebaseId) {
       this.editUser = true;
     }
   }
@@ -35,7 +35,7 @@ export class ModalFormUserComponent {
   saveUser(){
     const objUserForm: User = this.formUser.getRawValue();
 
-    if(this.data == this.data.firebaseId) {
+    if(this.data && this.data.firebaseId) {
       //editando o usuário
       this.userService.update(this.data.firebaseId, objUserForm).then(
         (Response: any) => {
@@ -73,7 +73,7 @@ export class ModalFormUserComponent {
       
     });
     
-    if(this.data == this.data.firebaseId) {
+    if(this.data && this.data.firebaseId) {
       this.fillForm();
     }
   }
