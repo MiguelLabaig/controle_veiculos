@@ -1,0 +1,67 @@
+<app-menu></app-menu>
+
+
+<div class="container-fluid pt-3">
+
+  <div class="row">
+    <div class="col-12">
+      <h1 class="titulo">Cadastro de veículos</h1>
+      <h2 class="subtitulo">Gerencie seus veículos, adicionando, editando ou excluíndo,</h2>
+    </div>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-12">
+      <app-button class="float-end" textButton="+ Cadastrar" (click)="openModalAddUser()"></app-button>
+
+      <mat-form-field>
+        <mat-label>Busca por veículo</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Faça a sua busca" #input>
+      </mat-form-field>
+
+
+      <table class="mat-elevation-z8" mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="id">
+          <th class="th-table" mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+          <td class="td-table" mat-cell *matCellDef="let user"> {{user.firebaseId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="modelo">
+          <th class="th-table" mat-header-cell *matHeaderCellDef mat-sort-header>Veiculo</th>
+          <td class="td-table" mat-cell *matCellDef="let user"> {{user.modelo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="placa">
+          <th class="th-table" mat-header-cell *matHeaderCellDef mat-sort-header> Placa </th>
+          <td class="td-table" mat-cell *matCellDef="let user"> {{user.placa}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="condutor">
+          <th class="th-table" mat-header-cell *matHeaderCellDef mat-sort-header> Condutor </th>
+          <td class="td-table" mat-cell *matCellDef="let user"> {{user.condutor}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th class="th-table" mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+          <td class="td-table" mat-cell *matCellDef="let user">
+            <mat-icon class="icone-tabela" (click)="openModalViewUser(user)">visibility</mat-icon>
+            <mat-icon class="icone-tabela" (click)="openModalEditUser(user.firebaseId)">edit</mat-icon>
+            <mat-icon class="icone-tabela" (dblclick)="deleteUser(user.firebaseId)">delete</mat-icon>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell no-data" colspan="4">Dados de pesquisa não encontrados: "{{input.value}}"</td>
+        </tr>
+      </table>
+
+      <mat-paginator class="shadow-sm" [pageSizeOptions]="[3, 5, 7]"
+        aria-label="Selecione usuários por página"></mat-paginator>
+
+    </div>
+  </div>
+</div>

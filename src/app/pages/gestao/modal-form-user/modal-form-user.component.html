@@ -1,0 +1,46 @@
+<div class="container-fluid p-3">
+    <mat-icon class="float-end hover" (click)="closeModal()">close</mat-icon>
+
+    <h1 class="titulo" *ngIf="editUser">Editar o veículo</h1>
+    <h1 class="titulo" *ngIf="!editUser">Cadastrar um veículo</h1>
+    <h2 class="subtitulo">Preencha o formulário para salvar o veículo</h2>
+
+    <form class="row" [formGroup]="formUser">
+        <div class="col-12 col-md-6 mb-2">
+            <mat-form-field class="example-full-width w-100">
+                <mat-label>Modelo</mat-label>
+                <input type="text" matInput formControlName="modelo" placeholder="Digite o modelo">
+                @if (formUser.controls['modelo'].invalid) {
+                <mat-error>Por favor insira um modelo válido</mat-error>
+                }
+            </mat-form-field>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+            <mat-form-field class="example-full-width w-100">
+                <mat-label>Placa</mat-label>
+                <input type="text" matInput formControlName="placa" placeholder="Digite a placa">
+                @if (formUser.controls['placa'].invalid) {
+                <mat-error>Por favor insira uma placa válida</mat-error>
+                }
+            </mat-form-field>
+        </div>
+        <div class="col-12 col-md-6 mb-2">
+            <mat-form-field class="example-full-width w-100">
+                <mat-label>Condutor</mat-label>
+                <input type="text" matInput formControlName="condutor" placeholder="Nome do condutor">
+                @if (formUser.controls['condutor'].invalid) {
+                <mat-error>Por favor insira o nome do condutor</mat-error>
+                }
+            </mat-form-field>
+        </div>
+        
+       
+
+
+        <div class="col-12">
+            <button class="button-primary" [disabled]="!formUser.valid" (click)="saveUser()">Salvar veículo</button>
+        </div>
+
+    </form>
+
+</div>
