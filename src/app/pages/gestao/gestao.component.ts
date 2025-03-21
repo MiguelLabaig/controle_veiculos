@@ -93,11 +93,11 @@ export class GestaoComponent {
 
 
   //caso alfo de errado vem e muda esse parametro para user
-  openModalEditUser(firebaseId: User){
+  openModalEditUser(placa: User){
     this.dialog.open(ModalFormUserComponent, {
       width: '700px',
       height: '410px',
-      data: firebaseId
+      data: placa
     }).afterClosed().subscribe(() => this.getListUsers() );
   }
 

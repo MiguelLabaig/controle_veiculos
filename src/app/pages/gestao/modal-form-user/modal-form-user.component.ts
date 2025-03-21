@@ -35,7 +35,7 @@ export class ModalFormUserComponent {
   saveUser(){
     const objUserForm: User = this.formUser.getRawValue();
 
-    if(this.data && this.data.firebaseId) {
+    if(this.data && this.data.placa) {
       //editando o usuário
       this.userService.update(this.data.firebaseId, objUserForm).then(
         (Response: any) => {
